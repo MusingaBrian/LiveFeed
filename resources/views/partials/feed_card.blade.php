@@ -38,5 +38,7 @@
             </div>
         </div>
         
+        @include('shared.feed_comment')
+
     </div>
 </div>
