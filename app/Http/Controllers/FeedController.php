@@ -47,7 +47,9 @@ class FeedController extends Controller
      */
     public function show(Feed $feed)
     {
-        return view('feeds.feed', compact('feed'));
+        if (request()->has('search')) {
+            $feed = $feed->where('content', 'like', request()->get('search'));
+        }
     }
 
     /**
@@ -55,7 +57,7 @@ class FeedController extends Controller
      */
     public function edit(Feed $feed)
     {
-        //
+        return view('layout.edit', compact('feed'));
     }
 
     /**
@@ -63,7 +65,14 @@ class FeedController extends Controller
      */
     public function update(Request $request, Feed $feed)
     {
-        //
+        $request->validateWithBag('contentErr', [
+            'content' => 'required|min:5|max:240',
+        ]);
+
+        $feed->content = request()->get('content', '');
+        $feed->save();
+
+        return redirect()->route('feeds.index')->with('success', 'Feed was Updated Successfully!');
     }
 
     /**

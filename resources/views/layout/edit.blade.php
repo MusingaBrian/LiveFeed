@@ -18,7 +18,7 @@
             @include('partials.success_message')
                 
                 <div>
-                    @include('partials.feed_card')
+                    @include('feeds.edit_feed')
                 </div>
 
         
@@ -39,3 +39,4 @@
     </div>
 
 @endsection
+

@@ -14,6 +14,7 @@
                 <form action="{{ route('feeds.destroy', $feed->id) }}" method="post">
                     @method('delete')
                     @csrf
+                    <a class="mx-2" href="{{ route('feeds.edit', $feed->id) }}">Edit</a>
                     <a href="{{ route('feeds.show', $feed->id) }}">View</a>
                 <button class="btn btn-danger btn-sm ms-1" type="submit">X</button>
             </form>
