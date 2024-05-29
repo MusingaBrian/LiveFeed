@@ -12,7 +12,14 @@ class FeedController extends Controller
      */
     public function index()
     {
-        return view('Feed');
+        $feed = new Feed([
+            'content' => 'Fourth Feed'
+        ]);
+        $feed->save();
+
+        return view('feed', [
+            'feeds' => Feed::orderBy('created_at', 'DESC')->get(),
+        ]);
     }
 
     /**
