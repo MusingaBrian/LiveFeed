@@ -7,9 +7,10 @@ Route::get('/', function () {
     return view('main');
 });
 
-Route::resource('/feeds', FeedController::class)
+Route::resource('feeds', FeedController::class)
     ->names([
         'index' => 'feeds.index',
         'store' => 'feeds.store',
+        'destroy' => 'feeds.destroy',
     ])
-    ->only(['index', 'store']);
+    ->only(['index', 'store', 'destroy']);

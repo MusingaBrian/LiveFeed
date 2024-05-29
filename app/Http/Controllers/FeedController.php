@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Feed;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FeedController extends Controller
 {
@@ -13,7 +14,7 @@ class FeedController extends Controller
     public function index()
     {
         return view('feed', [
-            'feeds' => Feed::orderBy('created_at', 'DESC')->get(),
+            'feeds' => Feed::orderBy('created_at', 'DESC')->paginate(4),
         ]);
     }
 
@@ -38,7 +39,7 @@ class FeedController extends Controller
         ]);
         $feeds->save();
 
-        return redirect()->route('feeds.index')->with('success', 'Feed was added successfully');
+        return redirect()->route('feeds.index')->with('success', 'Feed was added Successfully!');
     }
 
     /**
@@ -68,8 +69,9 @@ class FeedController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Feed $feed)
+    public function destroy($id)
     {
-        //
+        Feed::where('id', $id)->firstOrfail()->delete();
+        return redirect()->route('feeds.index')->with('success', 'Feed was Deleted Successfully!');
     }
 }

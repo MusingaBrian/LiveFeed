@@ -20,4 +20,9 @@
         
         @endforeach
 
+        <div class="mt-3">
+            {{ $feeds->links() }}
+        </div>
+
+
 </div>

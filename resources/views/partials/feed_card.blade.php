@@ -9,7 +9,15 @@
                         </a></h5>
                 </div>
             </div>
+
+            <div>
+                <form action="{{ route('feeds.destroy', $feed->id) }}" method="post">
+                    @method('delete')
+                    @csrf
+                <button class="btn btn-danger btn-sm" type="submit">X</button></div>
+            </form>
         </div>
+
         </div>
 
         <div class="card-body">
