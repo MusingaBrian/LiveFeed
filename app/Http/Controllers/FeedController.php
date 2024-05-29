@@ -8,13 +8,17 @@ use Illuminate\Support\Facades\DB;
 
 class FeedController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
+        $feeds = Feed::orderBy('created_at', 'DESC');
+
+        if (request()->has('search')) {
+            $feeds = $feeds->where('content', 'like', '%' . request()->get('search') . '%');
+        }
+
         return view('feed', [
-            'feeds' => Feed::orderBy('created_at', 'DESC')->paginate(4),
+            'feeds' => $feeds->paginate(4),
         ]);
     }
 
@@ -47,9 +51,6 @@ class FeedController extends Controller
      */
     public function show(Feed $feed)
     {
-        if (request()->has('search')) {
-            $feed = $feed->where('content', 'like', request()->get('search'));
-        }
     }
 
     /**
