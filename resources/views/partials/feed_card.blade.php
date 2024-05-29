@@ -14,19 +14,16 @@
                 <form action="{{ route('feeds.destroy', $feed->id) }}" method="post">
                     @method('delete')
                     @csrf
-                <button class="btn btn-danger btn-sm" type="submit">X</button></div>
+                    <a href="{{ route('feeds.show', $feed->id) }}">View</a>
+                <button class="btn btn-danger btn-sm ms-1" type="submit">X</button>
             </form>
+        </div>
         </div>
 
         </div>
 
         <div class="card-body">
         <p class="fs-6 fw-light text-muted">
-            {{-- comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes
-            of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of
-            ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum
-            dolor sit amet..", comes from a line in section 1.10.32. --}}
-
             {{ $feed->content }}
         </p>
         <div class="d-flex justify-content-between">

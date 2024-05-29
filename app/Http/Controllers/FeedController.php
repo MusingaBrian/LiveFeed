@@ -35,7 +35,7 @@ class FeedController extends Controller
         ]);
 
         $feeds = Feed::create([
-            'content' => request()->get('feeds', ''),
+            'content' => request()->get('feed', ''),
         ]);
         $feeds->save();
 
@@ -47,7 +47,7 @@ class FeedController extends Controller
      */
     public function show(Feed $feed)
     {
-        //
+        return view('feeds.feed', compact('feed'));
     }
 
     /**
@@ -69,9 +69,9 @@ class FeedController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(Feed $feed)
     {
-        Feed::where('id', $id)->firstOrfail()->delete();
+        $feed->delete();
         return redirect()->route('feeds.index')->with('success', 'Feed was Deleted Successfully!');
     }
 }

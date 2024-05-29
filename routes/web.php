@@ -12,5 +12,6 @@ Route::resource('feeds', FeedController::class)
         'index' => 'feeds.index',
         'store' => 'feeds.store',
         'destroy' => 'feeds.destroy',
+        'show' => 'feeds.show',
     ])
-    ->only(['index', 'store', 'destroy']);
+    ->only(['index', 'store', 'destroy', 'show']);
