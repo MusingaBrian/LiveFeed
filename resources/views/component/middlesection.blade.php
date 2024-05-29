@@ -2,7 +2,7 @@
 
     @include('partials.success_message')
 
-    <h4> Share yours ideas </h4>
+    <h4> Share your feeds here </h4>
 
     <div class="row">
 

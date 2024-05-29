@@ -25,17 +25,20 @@ class FeedController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
-        $feed = Feed::create([
-            'content' => request()->get('feed', ''),
-        ]);
-        $feed->save();
 
-        return redirect()->route('feeds.index');
+        $request->validateWithBag('feedErr', [
+            'feed' => 'required|min:5|max:240',
+        ]);
+
+        $feeds = Feed::create([
+            'content' => request()->get('feeds', ''),
+        ]);
+        $feeds->save();
+
+        return redirect()->route('feeds.index')->with('success', 'Feed was added successfully');
     }
 
     /**
