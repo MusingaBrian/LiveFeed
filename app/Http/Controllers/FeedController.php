@@ -12,11 +12,6 @@ class FeedController extends Controller
      */
     public function index()
     {
-        $feed = new Feed([
-            'content' => 'Fourth Feed'
-        ]);
-        $feed->save();
-
         return view('feed', [
             'feeds' => Feed::orderBy('created_at', 'DESC')->get(),
         ]);
@@ -35,7 +30,12 @@ class FeedController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $feed = Feed::create([
+            'content' => request()->get('feed', ''),
+        ]);
+        $feed->save();
+
+        return redirect()->route('feeds.index');
     }
 
     /**

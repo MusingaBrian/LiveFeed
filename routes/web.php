@@ -8,4 +8,8 @@ Route::get('/', function () {
 });
 
 Route::resource('/feeds', FeedController::class)
-    ->only(['index']);
+    ->names([
+        'index' => 'feeds.index',
+        'store' => 'feeds.store',
+    ])
+    ->only(['index', 'store']);
