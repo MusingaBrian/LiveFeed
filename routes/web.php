@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FeedController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,6 @@ Route::resource('feeds', FeedController::class)
         'update' => 'feeds.update',
     ])
     ->only(['index', 'store', 'destroy', 'show', 'edit', 'update']);
+
+Route::resource('feeds.comments', CommentController::class)
+    ->only(['index', 'show', 'store']);

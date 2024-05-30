@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Feed;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -51,6 +52,8 @@ class FeedController extends Controller
      */
     public function show(Feed $feed)
     {
+        // dd($feed->comments);
+        return View('feeds.feed', compact('feed'));
     }
 
     /**
